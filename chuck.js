@@ -5,14 +5,13 @@
         var binary = '';
         for(var i = 0; i < string.length; i++) {
             var tmp = string.charCodeAt(i).toString(2);
-
             if(tmp.length < 7) tmp = '0' + tmp;
 
             binary += tmp;
         }
 
         function _toUnary(bin) {
-            var result='', prevChar='', block='', result='', sameBlock = true;
+            var prevChar='', block='', result='';
 
             for(var j = 0; j < bin.length; j++) {
                 if(prevChar == bin[j]) {
@@ -53,7 +52,6 @@
 
             if(result.length == 7) {
                 bin += result;
-                text += String.fromCharCode(parseInt(result, 2));
                 result = ''
             }
         }
