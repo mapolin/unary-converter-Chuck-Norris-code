@@ -5,13 +5,14 @@
         var binary = '';
         for(var i = 0; i < string.length; i++) {
             var tmp = string.charCodeAt(i).toString(2);
+
             if(tmp.length < 7) tmp = '0' + tmp;
 
             binary += tmp;
         }
 
         function _toUnary(bin) {
-            var prevChar='', block='', result='';
+            var result='', prevChar='', block='', result='', sameBlock = true;
 
             for(var j = 0; j < bin.length; j++) {
                 if(prevChar == bin[j]) {
@@ -43,6 +44,7 @@
 
         for(var i = 0; i < blocks.length; i ++) {
             if(i % 2 == 0) {
+                result = '';
                 segment = (blocks[i] == '0' ? '1' : '0');
             } else {
                 for(var j = 0; j < blocks[i].length; j++) {
@@ -50,14 +52,11 @@
                 }
             }
 
-            if(result.length == 7) {
-                bin += result;
-                result = ''
-            }
+            bin += result;
         }
 
-        for(var i = 0; i <= result.length; i += 7) {
-            text += String.fromCharCode( parseInt(result.substr(i, 7), 2) );
+        for(var j = 0; j <= bin.length; j += 7) {
+            text += String.fromCharCode( parseInt(bin.substr(j, 7), 2) );
         }
 
         return {
